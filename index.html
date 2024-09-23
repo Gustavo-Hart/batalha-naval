@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalha Naval</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Batalha Naval</h1>
+        <label for="difficulty">Escolha a dificuldade:</label>
+        <select id="difficulty">
+            <option value="easy">Fácil (5x5)</option>
+            <option value="medium" selected>Médio (10x10)</option>
+            <option value="hard">Difícil (15x15)</option>
+        </select>
+        <div id="grid"></div>
+        <button id="restart-btn">Reiniciar Jogo</button>
+        <div id="status"></div>
+    </div>
+    <script src="java.js"></script>
+</body>
+</html>
