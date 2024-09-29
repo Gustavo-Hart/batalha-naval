@@ -3,22 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Batalha Naval</title>
+    <title>Jogo dos Barcos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Batalha Naval</h1>
-        <label for="difficulty">Escolha a dificuldade:</label>
-        <select id="difficulty">
-            <option value="easy">Fácil (5x5)</option>
-            <option value="medium" selected>Médio (10x10)</option>
-            <option value="hard">Difícil (15x15)</option>
-        </select>
-        <div id="grid"></div>
-        <button id="restart-btn">Reiniciar Jogo</button>
-        <div id="status"></div>
-    </div>
-    <script src="java.js"></script>
+    <h1>Jogo dos Barcos</h1>
+    <button id="iniciar">Iniciar Jogo</button>
+    <table id="tabuleiro"></table>
+    <div id="resultado"></div>
+
+    <script>
+        let Tabuleiro = [];
+        let Qtd_Barcos = 10;
+        let Qtd_Tiros = 12;
+        let Pontos = 0;
+
+        function inicializarTabuleiro() {
+            Tabuleiro = Array.from({ length: 5 }, () => Array(5).fill(false));
+            for (let i = 0; i < Qtd_Barcos; i++) {
+                let posX, posY;
+                do {
+                    posX = Math.floor(Math.random() * 5);
+                    posY = Math.floor(Math.random() * 5);
+                } while (Tabuleiro[posX][posY]);
+                Tabuleiro[posX][posY] = true;
+            }
+        }
+
+        function criarTabela() {
+            const tabuleiroElement = document.getElementById('tabuleiro');
+            tabuleiroElement.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const row = document.createElement('tr');
+                for (let j = 0; j < 5; j++) {
+                    const cell = document.createElement('td');
+                    cell.dataset.x = i;
+                    cell.dataset.y = j;
+                    cell.onclick = function () {
+                        if (Qtd_Tiros > 0) {
+                            jogar(i, j, cell);
+                        }
+                    };
+                    row.appendChild(cell);
+                }
+                tabuleiroElement.appendChild(row);
+            }
+        }
+
+        function jogar(jogadaX, jogadaY, cell) {
+            if (Tabuleiro[jogadaX][jogadaY] === undefined) {
+                return;
+            }
+            Qtd_Tiros--;
+
+            if (Tabuleiro[jogadaX][jogadaY]) {
+                Tabuleiro[jogadaX][jogadaY] = false;
+                Pontos += 10;
+                cell.classList.add('afundado');
+                cell.textContent = 'A';
+                mostrarResultado("Barco afundado! Pontos: " + Pontos);
+            } else {
+                cell.classList.add('agua');
+                cell.textContent = 'Á';
+                mostrarResultado("Tiro na água. Pontos: " + Pontos);
+            }
+
+            if (Qtd_Tiros === 0) {
+                mostrarResultado(Pontos >= 60 ? "Parabéns, você venceu!" : "Que pena, você perdeu!");
+            }
+        }
+
+        function mostrarResultado(mensagem) {
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = mensagem;
+        }
+
+        document.getElementById('iniciar').addEventListener('click', () => {
+            inicializarTabuleiro();
+            Pontos = 0;
+            Qtd_Tiros = 12;
+            criarTabela();
+            mostrarResultado("Jogo iniciado! Faça seu movimento.");
+        });
+    </script>
 </body>
 </html>

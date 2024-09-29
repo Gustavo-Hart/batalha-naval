@@ -1,85 +1,71 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    background-image: url(fundo.png);
+    background-size: cover;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-image: url(fundo.png);
+h1 {
+    margin-top: 20px;
+    color: #4CAF50;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 30%;
+    height: 40%;
+    background-image: url(prébatalha.png);
     background-size: cover;
     background-position: center;
 }
 
-.container {
-    text-align: center;
-    background-image: url(batalha.png);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-h1 {
-    color: #00796b;
-}
-
-label {
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-#grid {
-    display: grid;
-    gap: 5px;
-    margin: 20px 0;
-}
-
-.cell {
+td {
     width: 40px;
     height: 40px;
-    background-image: url(logo.png);
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: 1px solid #004d40;
-    transition: background-color 0.3s;
-}
-
-.cell.hit {
-    background-image: url(barco.png);
-    background-size: cover;
-}
-
-.cell.miss {
-    background-image: url(agua.png);
-    background-size: cover;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #00796b;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    border: 1px solid #333;
+    text-align: center;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #004d40;
+
+
+.afundado {
+    background-image: url(acerto.png);
+    background-size: cover;
+    background-position: center;
 }
 
-#status {
-    margin-top: 10px;
+.agua {
+    background-image: url(erro.png);
+    background-size: cover;
+    background-position: center;
+}
+
+#resultado {
+    margin-top: 20px;
     font-size: 18px;
-    color: #00796b;
+    font-weight: bold;
+    color: #000000;
 }
