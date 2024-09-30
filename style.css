@@ -4,9 +4,7 @@ body {
     color: #333;
     text-align: center;
     background-image: url(fundo.png);
-    background-size: cover;
-    background-position: center;
-    background-size: cover;
+    background-size: 100%;
     background-repeat: no-repeat;
 }
 
